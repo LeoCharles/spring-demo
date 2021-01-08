@@ -3,5 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userDao" class="com.leocode.dao.impl.UserDaoImpl" scope="singleton" init-method="init"  destroy-method="destroy"></bean>
+    <!-- 一个 bean 标签注册一个组件  -->
+    <bean id="person01" class="com.leocode.bean.Person">
+        <property name="name" value="leo"/>
+        <property name="age" value="30"/>
+        <property name="gender" value="男"/>
+    </bean>
+
+
+
 </beans>
