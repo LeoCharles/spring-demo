@@ -3,13 +3,23 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- 一个 bean 标签注册一个组件  -->
+    <!-- 通过 IOC 容器创建对象，并为属性赋值  -->
     <bean id="person01" class="com.leocode.bean.Person">
-        <property name="name" value="leo"/>
+        <property name="name" value="Leo"/>
         <property name="age" value="30"/>
         <property name="gender" value="男"/>
     </bean>
-
+    <bean id="person02" class="com.leocode.bean.Person">
+        <property name="name" value="Tom" />
+        <property name="age" value="20" />
+        <property name="gender" value="男" />
+    </bean>
+    <bean id="person03" class="com.leocode.bean.Person">
+        <!-- 调用有参构造器进行创建对象并赋值，可省略 name 属性，需按照构造器参数顺序赋值 -->
+        <constructor-arg name="name" value="Lucy" />
+        <constructor-arg name="age" value="25" />
+        <constructor-arg name="gender" value="女" />
+    </bean>
 
 
 </beans>

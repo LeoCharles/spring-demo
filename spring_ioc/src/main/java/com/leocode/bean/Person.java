@@ -6,6 +6,19 @@ public class Person {
     private Integer age;
     private String gender;
 
+    public Person() {
+        super();
+        System.out.println("Person 无参构造创建...");
+    }
+
+    public Person(String name, Integer age, String gender) {
+        super();
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        System.out.println("Person 有参构造器创建...");
+    }
+
     public String getName() {
         return name;
     }
