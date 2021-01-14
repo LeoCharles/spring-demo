@@ -21,5 +21,57 @@
         <constructor-arg name="gender" value="女" />
     </bean>
 
+    <!-- 复杂属性赋值  -->
+    <bean id="student" class="com.leocode.bean.Student" >
+        <!--普通属性-->
+        <property name="name" value="LeoCode" />
+        <!--bean-->
+        <property name="address" ref="address" />
+        <!--数组-->
+        <property name="books">
+            <array>
+                <value>红楼梦</value>
+                <value>西游记</value>
+                <value>水浒传</value>
+                <value>三国演义</value>
+            </array>
+        </property>
+        <!--list集合-->
+        <property name="hobbies">
+            <list>
+                <value>听歌</value>
+                <value>看电影</value>
+            </list>
+        </property>
+        <!--map-->
+        <property name="card">
+            <map>
+                <entry key="身份证" value="420323199912053717" />
+                <entry key="银行卡" value="63123456789" />
+            </map>
+        </property>
+        <!--set-->
+        <property name="games">
+            <set>
+                <value>Dota2</value>
+                <value>LOL</value>
+            </set>
+        </property>
+        <!--null-->
+        <property name="car">
+            <null />
+        </property>
+        <!--properties 配置类型-->
+        <property name="info">
+            <props>
+                <prop key="学号">20210502</prop>
+                <prop key="班级">五年级2班</prop>
+            </props>
+        </property>
+    </bean>
 
+    <!-- 复杂类型 -->
+    <bean id="address" class="com.leocode.bean.Address">
+        <property name="address" value="湖北"/>
+    </bean>
 </beans>

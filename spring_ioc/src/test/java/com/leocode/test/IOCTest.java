@@ -1,6 +1,7 @@
 package com.leocode.test;
 
 import com.leocode.bean.Person;
+import com.leocode.bean.Student;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -41,5 +42,12 @@ public class IOCTest {
     public void test03() {
         Person person03 = (Person) ioc.getBean("person03");
         System.out.println(person03);
+    }
+
+    // 复杂数据赋值
+    @Test
+    public void test04() {
+        Student student = (Student) ioc.getBean("student");
+        System.out.println(student);
     }
 }
