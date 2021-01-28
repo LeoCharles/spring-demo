@@ -1,77 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- 通过 IOC 容器创建对象，并为属性赋值  -->
-    <bean id="person01" class="com.leocode.bean.Person">
+    <!--
+        id：bean唯一的标识符
+        class：bean对象的全限定名
+        name：别名，可以同时取多个
+        scope：bean的作用域，singleton（单例，默认）、prototype（原型）、request、session、application
+     -->
+    <!-- Set 注入  -->
+    <bean id="person01" class="com.leocode.bean.Person" scope="prototype">
         <property name="name" value="Leo"/>
         <property name="age" value="30"/>
         <property name="gender" value="男"/>
     </bean>
-    <bean id="person02" class="com.leocode.bean.Person">
-        <property name="name" value="Tom" />
-        <property name="age" value="20" />
-        <property name="gender" value="男" />
-    </bean>
+
+    <!-- p 命名空间注入（通过 Set 注入），需要加入 xmlns:p="http://www.springframework.org/schema/p" 约束 -->
+    <bean id="person02" class="com.leocode.bean.Person" p:name="Tom" p:age="20" p:gender="男" />
+
+    <!-- 构造器注入 -->
     <bean id="person03" class="com.leocode.bean.Person">
-        <!-- 调用有参构造器进行创建对象并赋值，可省略 name 属性，需按照构造器参数顺序赋值 -->
+        <!-- 构造器注入，可省略 name 属性，需按照构造器参数顺序赋值 -->
         <constructor-arg name="name" value="Lucy" />
         <constructor-arg name="age" value="25" />
         <constructor-arg name="gender" value="女" />
     </bean>
 
-    <!-- 复杂属性赋值  -->
-    <bean id="student" class="com.leocode.bean.Student" >
-        <!--普通属性-->
-        <property name="name" value="LeoCode" />
-        <!--bean-->
-        <property name="address" ref="address" />
-        <!--数组-->
-        <property name="books">
-            <array>
-                <value>红楼梦</value>
-                <value>西游记</value>
-                <value>水浒传</value>
-                <value>三国演义</value>
-            </array>
-        </property>
-        <!--list集合-->
-        <property name="hobbies">
-            <list>
-                <value>听歌</value>
-                <value>看电影</value>
-            </list>
-        </property>
-        <!--map-->
-        <property name="card">
-            <map>
-                <entry key="身份证" value="420323199912053717" />
-                <entry key="银行卡" value="63123456789" />
-            </map>
-        </property>
-        <!--set-->
-        <property name="games">
-            <set>
-                <value>Dota2</value>
-                <value>LOL</value>
-            </set>
-        </property>
-        <!--null-->
-        <property name="car">
-            <null />
-        </property>
-        <!--properties 配置类型-->
-        <property name="info">
-            <props>
-                <prop key="学号">20210502</prop>
-                <prop key="班级">五年级2班</prop>
-            </props>
-        </property>
-    </bean>
+    <!-- c 命名空间注入（通过构造器），需要 xmlns:c="http://www.springframework.org/schema/c" 约束 -->
+    <bean id="person04" class="com.leocode.bean.Person" c:name="Eva" c:age="18" c:gender="女" />
 
-    <!-- 复杂类型 -->
-    <bean id="address" class="com.leocode.bean.Address">
-        <property name="address" value="湖北"/>
-    </bean>
+
+    <!-- 引入配置文件 -->
+    <import resource="student.xml" />
+
 </beans>

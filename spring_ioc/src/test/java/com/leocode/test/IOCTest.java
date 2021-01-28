@@ -17,37 +17,43 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class IOCTest {
 
     // 获取 IOC 容器，传入当前应用的 xml 配置文件
-    private final ApplicationContext ioc = new ClassPathXmlApplicationContext("applicationContext.xml");
+    private final ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-    // 通过 IOC 容器创建对象
+    // Set 注入
     @Test
     public void test01() {
         // 容器创建的时候，注入的组件也创建了，可以直接获取
-        Person person01 = (Person) ioc.getBean("person01");
+        Person person01 = (Person) context.getBean("person01");
         System.out.println(person01);
+
+        // 根据 bean 的类型 从 IOC 容器中获取 bean 的实例
+        Person person02 = context.getBean("person02", Person.class);
+        System.out.println(person02);
     }
 
-    // 根据 bean 的类型 从 IOC 容器中获取 bean 的实例
+    // 构造器注入
     @Test
     public void test02() {
-         // 如果 IOC 容器中这个类型的 bean 有多个，查找就会报错
-         // Person bean = ioc.getBean(Person.class);
-         // System.out.println(bean);
-        Person bean2 = ioc.getBean("person02", Person.class);
-        System.out.println(bean2);
+        Person person03 = (Person) context.getBean("person03");
+        System.out.println(person03);
     }
 
-    // 通过构造器为 bean 的属性赋值
+    // 作用域 singleton（单例，默认）、prototype（原型）、request、session、application
     @Test
     public void test03() {
-        Person person03 = (Person) ioc.getBean("person03");
-        System.out.println(person03);
+        Person person01 = context.getBean("person01", Person.class);
+        Person person02 = context.getBean("person01", Person.class);
+
+        // 原型模式，每次都会长生一个新对象；单例模式是同一个对象
+        System.out.println(person01 == person02);
     }
 
     // 复杂数据赋值
     @Test
     public void test04() {
-        Student student = (Student) ioc.getBean("student");
+        Student student = context.getBean("student", Student.class);
         System.out.println(student);
     }
+
+
 }
