@@ -1,5 +1,6 @@
 package com.leocode.test;
 
+import com.leocode.bean.People;
 import com.leocode.bean.Person;
 import com.leocode.bean.Student;
 import org.junit.Test;
@@ -53,6 +54,14 @@ public class IOCTest {
     public void test04() {
         Student student = context.getBean("student", Student.class);
         System.out.println(student);
+    }
+
+    // 使用注解注入
+    @Test
+    public void test05() {
+        People people = context.getBean("people", People.class);
+        people.getDog().shout();
+        people.getCat().shout();
     }
 
 

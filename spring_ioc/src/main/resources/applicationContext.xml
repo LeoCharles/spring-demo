@@ -36,4 +36,6 @@
     <!-- 引入配置文件 -->
     <import resource="student.xml" />
 
+    <import resource="people.xml" />
+
 </beans>

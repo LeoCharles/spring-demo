@@ -17,6 +17,7 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/student.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/people.xml</file>
         </fileset>
       </configuration>
     </facet>
